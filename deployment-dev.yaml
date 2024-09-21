@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: 140023404084.dkr.ecr.eu-north-1.amazonaws.com/python-test:${GITHUB_SHA}
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
