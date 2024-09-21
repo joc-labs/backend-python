@@ -1,5 +1,6 @@
-cheatcode.txt
 .env
 .venv
+cheatcode.txt
 *.pyc
 __pycache__
+.git
