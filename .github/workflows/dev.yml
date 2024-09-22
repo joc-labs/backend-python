@@ -14,7 +14,7 @@ on:
 env:
   AWS_REGION: "eu-north-1"
   ECR_REPOSITORY: "140023404084.dkr.ecr.eu-north-1.amazonaws.com/python-test"
-  EKS_CLUSTER_NAME: "dev-AKS-cluster"
+  EKS_CLUSTER_NAME: "AKS-cluster-python"
 
 # Define the job to create an image and push on ECR
 jobs:
@@ -42,4 +42,5 @@ jobs:
         run: aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
       - name: Deploy to EKS
         run: |
-          kubectl apply -f kubernetes/dev/deployment.yaml
+          sed -i.bak "s|DOCKER_IMAGE|${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}|g" deployment-dev.yaml && \
+          kubectl apply -f deployment-dev.yaml
