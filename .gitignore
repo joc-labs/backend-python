@@ -3,3 +3,4 @@ cheatcode.txt
 .venv
 *.pyc
 __pycache__
+secrets.yaml

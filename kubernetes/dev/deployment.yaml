@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: backend
 spec:
   replicas: 1
   selector:
@@ -17,4 +18,15 @@ spec:
           image: DOCKER_IMAGE
           ports:
             - containerPort: 80
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MONGODB_URI
+            - name: MONGODB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MONGODB_NAME
       restartPolicy: Always
