@@ -1,5 +1,4 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from bson import ObjectId
 from dotenv import load_dotenv
 import os
 
@@ -13,6 +12,7 @@ class MongoDB:
     def __init__(self):
         ''' Initialises the database connection.
         '''
+        print("NAME ---> ", MONGODB_NAME)
         self.client = AsyncIOMotorClient(MONGODB_URI)
         self.database = self.client[MONGODB_NAME]
 
