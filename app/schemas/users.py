@@ -7,3 +7,9 @@ class User(BaseModel):
     email: str
     password_hash: str
     is_active: bool = False
+
+
+class UserCreate(BaseModel):
+    name: str
+    email: str
+    password_hash: str
