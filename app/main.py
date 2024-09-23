@@ -2,12 +2,6 @@
 from fastapi import FastAPI
 from routers.users import router as user_routes
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-MONGODB_NAME = os.getenv("MONGODB_NAME")
-print("LOGGING --> ", MONGODB_NAME)
 
 app = FastAPI()
 
