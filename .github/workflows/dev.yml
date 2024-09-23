@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION: "eu-north-1"
   ECR_REPOSITORY: "140023404084.dkr.ecr.eu-north-1.amazonaws.com/python-test"
-  EKS_CLUSTER_NAME: "dev-AKS-cluster"
+  EKS_CLUSTER_NAME: "eks-test-app"
 
 # Define the job to create an image and push on ECR
 jobs:
