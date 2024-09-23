@@ -41,6 +41,3 @@ jobs:
         run: |
           sed -i.bak "s|DOCKER_IMAGE|${{ env.ECR_REPOSITORY }}:${{ github.sha }}|g" kubernetes/dev/deployment.yaml && \
           kubectl apply -f kubernetes/dev/deployment.yaml
-      - name: Debug Environment Variables
-        run: |
-          echo "MONGODB_NAME: $MONGODB_NAME"
