@@ -1,9 +1,8 @@
-
 from fastapi import APIRouter, HTTPException
-from schemas.users import *
+from schemas.users import UserCreate, User
 from schemas.responses import GenericResponse
 from config.mongo import mongodb
-from constants.collections import *
+from constants.collections import USER_COLLECTION
 
 router = APIRouter()
 
@@ -16,7 +15,7 @@ async def create_user(user_creation: UserCreate):
             name=user_creation.name,
             email=user_creation.email,
             password_hash=user_creation.password_hash,
-            is_active=True
+            is_active=True,
         )
 
         # Insert object
@@ -33,8 +32,12 @@ async def create_user(user_creation: UserCreate):
 @router.get("/user/info", response_model=User)
 async def get_user_info():
     try:
-        user_mock = User(name="hello", email="hello@gmail.com",
-                         password_hash="hashthere", is_active=True)
+        user_mock = User(
+            name="hello",
+            email="hello@gmail.com",
+            password_hash="hashthere",
+            is_active=True,
+        )
         return user_mock
     except Exception as error:
         print("Error on user/info: ", error)
